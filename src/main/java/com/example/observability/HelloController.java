@@ -1,6 +1,8 @@
 package com.example.observability;
 
 
+import io.micrometer.core.instrument.Counter;
+import io.micrometer.core.instrument.MeterRegistry;
 import io.micrometer.observation.annotation.Observed;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,6 +24,9 @@ public class HelloController {
     @Autowired
     private RestTemplate restTemplate;
 
+    @Autowired
+    private MeterRegistry meterRegistry;
+
     @GetMapping("/hi")
     public String sayHi() {
         logger.info("Called sayHi");
@@ -31,6 +36,13 @@ public class HelloController {
         }catch (Exception e) {
             e.printStackTrace();
         }
+
+        Counter counter = Counter
+                .builder("hello-springboot")
+                .description("Success case")
+                .tag("result", "success")
+                .register(meterRegistry);
+        counter.increment();
 
         return "Hello from spring boot 3";
     }

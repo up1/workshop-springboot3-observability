@@ -19,12 +19,15 @@ public class HelloController {
     @Autowired
     private RestTemplateBuilder restTemplateBuilder;
 
+    @Autowired
+    private RestTemplate restTemplate;
+
     @GetMapping("/hi")
     public String sayHi() {
         logger.info("Called sayHi");
         step1();
         try {
-            String result = restTemplateBuilder.build().getForObject("http://localhost:8081/xyz", String.class);
+            String result = restTemplate.getForObject("http://localhost:8081/xyz", String.class);
         }catch (Exception e) {
             e.printStackTrace();
         }
@@ -35,7 +38,7 @@ public class HelloController {
     @Observed(name = "user.name",
             contextualName = "getting-user-name",
             lowCardinalityKeyValues = {"userType", "userType2"})
-    private void step1() {
+    public void step1() {
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {

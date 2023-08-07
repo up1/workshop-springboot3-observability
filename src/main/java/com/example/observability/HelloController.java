@@ -19,18 +19,18 @@ public class HelloController {
     private final Logger logger = LoggerFactory.getLogger(HelloController.class);
 
     @Autowired
-    private RestTemplateBuilder restTemplateBuilder;
-
-    @Autowired
     private RestTemplate restTemplate;
 
     @Autowired
     private MeterRegistry meterRegistry;
 
+    @Autowired
+    private HelloService helloService;
+
     @GetMapping("/hi")
     public String sayHi() {
         logger.info("Called sayHi");
-        step1();
+        helloService.step1();
         try {
             String result = restTemplate.getForObject("http://localhost:8081/xyz", String.class);
         }catch (Exception e) {
@@ -45,17 +45,6 @@ public class HelloController {
         counter.increment();
 
         return "Hello from spring boot 3";
-    }
-
-    @Observed(name = "user.name",
-            contextualName = "getting-user-name",
-            lowCardinalityKeyValues = {"userType", "userType2"})
-    public void step1() {
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
     }
 
 }

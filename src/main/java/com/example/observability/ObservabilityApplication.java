@@ -11,6 +11,9 @@ import org.springframework.core.task.AsyncTaskExecutor;
 import org.springframework.core.task.support.TaskExecutorAdapter;
 import org.springframework.web.client.RestTemplate;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.concurrent.Executors;
 
 import static java.lang.System.*;
@@ -40,5 +43,6 @@ public class ObservabilityApplication {
 			protocolHandler.setExecutor(Executors.newVirtualThreadPerTaskExecutor());
 		};
 	}
+
 
 }

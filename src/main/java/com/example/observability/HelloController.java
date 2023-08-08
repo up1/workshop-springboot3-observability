@@ -29,7 +29,7 @@ public class HelloController {
 
     @GetMapping("/hi2")
     public HelloResponse sayHi2() {
-        return new HelloResponse();
+        return new HelloResponse("Hello");
     }
 
     @GetMapping("/hi")

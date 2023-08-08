@@ -1,0 +1,71 @@
+{
+	"info": {
+		"_postman_id": "cf1f70e3-c8b0-474c-9786-f8383a43bea2",
+		"name": "spring-boot",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1453931",
+		"_collection_link": "https://red-firefly-245852.postman.co/workspace/XYZ~e14b2de0-4177-40ee-a22d-9b83d5d73aff/collection/1453931-cf1f70e3-c8b0-474c-9786-f8383a43bea2?action=share&creator=1453931&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8080/hi2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Check message\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.message).to.eql('Hello');",
+							"});",
+							"",
+							"var schema = {",
+							"  \"$schema\": \"http://json-schema.org/draft-04/schema#\",",
+							"  \"type\": \"object\",",
+							"  \"properties\": {",
+							"    \"message\": {",
+							"      \"type\": \"string\"",
+							"    }",
+							"  },",
+							"  \"required\": [",
+							"    \"message\"",
+							"  ]",
+							"};",
+							"",
+							"var data1 = pm.response.json();",
+							"",
+							"pm.test('Schema is valid', function () {",
+							"    pm.expect(tv4.validate(data1, schema)).to.be.true;",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8080/hi2",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"hi2"
+					]
+				},
+				"description": "dfsdfsdf\n\nsdfsdf\n\nsdfsdf"
+			},
+			"response": []
+		}
+	]
+}

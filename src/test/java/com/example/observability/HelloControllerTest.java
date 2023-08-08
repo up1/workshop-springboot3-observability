@@ -18,6 +18,6 @@ class HelloControllerTest {
     void sayHi2() {
         HelloResponse result =
                 restTemplate.getForObject("/hi2", HelloResponse.class);
-        assertNull(result.getMessage());
+        assertEquals("Hello", result.getMessage());
     }
 }

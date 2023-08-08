@@ -27,6 +27,11 @@ public class HelloController {
     @Autowired
     private HelloService helloService;
 
+    @GetMapping("/hi2")
+    public HelloResponse sayHi2() {
+        return new HelloResponse();
+    }
+
     @GetMapping("/hi")
     public String sayHi() {
         logger.info("Called sayHi");

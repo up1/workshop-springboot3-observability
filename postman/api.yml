@@ -1,0 +1,16 @@
+-  request:
+      url: /users/1
+      method: GET
+   response:
+    - status: 200
+      headers:
+         content-type: application/json
+      file: 1.json
+-  request:
+      url: /users/2
+      method: GET
+   response:
+    - status: 404
+      headers:
+         content-type: application/json
+      file: notfound.json

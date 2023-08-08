@@ -27,9 +27,12 @@ public class HelloController {
     @Autowired
     private HelloService helloService;
 
+    @Autowired
+    private DemoService demoService;
+
     @GetMapping("/hi2")
     public HelloResponse sayHi2() {
-        return new HelloResponse("Hello");
+        return new HelloResponse(demoService.getData());
     }
 
     @GetMapping("/hi")
